@@ -1,0 +1,262 @@
+body {
+    font-family: 'Varela Round', sans-serif;
+    background: rgb(123,211,232);
+    background: linear-gradient(135deg, rgba(123,211,232,1) 0%, rgba(232,123,165,1) 0%, rgba(255,50,50,1) 100%);
+    color: white;
+    overflow-x: hidden;
+}
+.navbar .sign-up-btn {
+    min-width: 110px;
+    max-height: 36px;
+
+}
+/*sửa nút login*/
+.navbar .login-btn {
+    min-width: 110px;
+    max-height: 36px;
+    color: white;
+    background: deepskyblue;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.navbar .dropdown-menu {
+    color: black;
+    font-weight: normal;
+    border-radius: 1px;
+    border-color: #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+}
+
+.navbar a, .navbar a:active {
+    color: white;
+    padding: 8px 20px;
+    background: transparent;
+    line-height: normal;
+}
+
+.navbar .navbar-form {
+    border: none;
+}
+
+.navbar .action-form {
+    width: 280px;
+    padding: 20px;
+    left: auto;
+    right: 0;
+    font-size: 14px;
+}
+
+.navbar .action-form a {
+    color: #33cabb;
+    padding: 0 !important;
+    font-size: 14px;
+}
+
+.navbar .action-form .hint-text {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 13px;
+}
+
+.navbar .btn-primary, .navbar .btn-primary:active {
+    color: #fff;
+    background: #33cabb !important;
+    border: none;
+}
+
+.navbar .btn-primary:hover, .navbar .btn-primary:focus {
+    color: #fff;
+    background: #31bfb1 !important;
+}
+
+.navbar .social-btn .btn, .navbar .social-btn .btn:hover {
+    color: #fff;
+    margin: 0;
+    padding: 0 !important;
+    font-size: 13px;
+    border: none;
+    transition: all 0.4s;
+    text-align: center;
+    line-height: 34px;
+    width: 47%;
+    text-decoration: none;
+}
+
+.navbar .social-btn .facebook-btn {
+    background: #507cc0;
+}
+
+.navbar .social-btn .facebook-btn:hover {
+    background: #4676bd;
+}
+
+.navbar .social-btn .twitter-btn {
+    background: #64ccf1;
+}
+
+.navbar .social-btn .twitter-btn:hover {
+    background: #4ec7ef;
+}
+
+.navbar .social-btn .btn i {
+    margin-right: 5px;
+    font-size: 16px;
+    position: relative;
+    top: 2px;
+}
+
+.or-seperator {
+    margin-top: 32px;
+    text-align: center;
+    border-top: 1px solid #e0e0e0;
+}
+
+.or-seperator b {
+    color: #666;
+    padding: 0 8px;
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+    text-align: center;
+    line-height: 26px;
+    background: #fff;
+    display: inline-block;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    position: relative;
+    top: -15px;
+    z-index: 1;
+}
+
+.navbar .action-buttons .dropdown-toggle::after {
+    display: none;
+}
+
+.form-check-label input {
+    position: relative;
+    top: 1px;
+}
+
+@media (min-width: 1200px) {
+    .form-inline .input-group {
+        width: 300px;
+        margin-left: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .dropdown-menu.action-form {
+        width: 100%;
+        padding: 10px 15px;
+        background: transparent;
+        border: none;
+    }
+
+    .navbar .form-inline {
+        display: block;
+    }
+
+    .navbar .input-group {
+        width: 100%;
+    }
+}
+
+#body-cart {
+    background-color: #fcf4f4;
+    font: normal 13px/1.5 Georgia, Serif;
+    color: #333;
+
+}
+.wrapper {
+    width: 100%;
+    margin-left: 10%;
+    padding: 20px;
+
+}
+h1 {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    font-size: 20px;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding: 4px 20px;
+    float: left;
+}
+.clear {
+    clear: both;
+}
+.items {
+    display: block;
+    margin: 20px 0;
+}
+.item {
+    background-color: #fff;
+    float: left;
+    margin: 0 10px 10px 0;
+    width: 205px;
+    padding: 5px;
+    height: 350px;
+    border-radius: 10px;
+}
+.item img {
+    display: block;
+    margin: auto;
+    height: 180px;
+    width: 100%;
+}
+h5 {
+    width: 100%;
+    height: 70px;
+    font-size: 16px;
+    display: block;
+    border-bottom: 1px solid #ccc;
+    margin: 0 0 10px 0;
+    padding: 0 0 5px 0;
+}
+.add-to-cart {
+    border: 1px solid #722A1B;
+    padding: 2px 12px;
+    background-color: #fff;
+    color: #722A1B;
+    text-transform: uppercase;
+    float: right;
+    margin: 5px 0;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+
+
+}
+span {
+    float: right;
+}
+.shopping-cart {
+    display: inline-block;
+    background: url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png') no-repeat 0 0;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px 0 0;
+}
+.header-body{
+    background: rgb(123,211,232);
+    background: linear-gradient(135deg, rgba(123,211,232,1) 0%, rgba(232,123,165,1) 0%, rgba(255,50,50,1) 100%);
+    color: white;
+}
+.header-body .sec p{
+color: white;
+}
+.header-body .sec h6{
+    color: white;
+}
+.menu-horizontal{
+    display: block;
+    margin: auto;
+    width: 100%;
+    background-color: white;
+    float: right;
+}
+
+
+

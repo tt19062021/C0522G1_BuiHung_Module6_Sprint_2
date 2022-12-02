@@ -57,6 +57,16 @@ CREATE TABLE IF NOT EXISTS customer (
     FOREIGN KEY (customer_type_id)
         REFERENCES customer_type (id)
 );
+-- xuất xứ
+CREATE TABLE IF NOT EXISTS origin(
+id int primary key auto_increment,
+name varchar(100)
+);
+-- nhãn hiệu
+CREATE TABLE IF NOT EXISTS brand(
+id int primary key auto_increment,
+name varchar(100)
+);
 CREATE TABLE IF NOT EXISTS beer_type (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100),
@@ -66,18 +76,34 @@ CREATE TABLE IF NOT EXISTS beer (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150),
     image TEXT,
-    trademark VARCHAR(50),
-    made VARCHAR(50),
     alcohol DOUBLE,
     volume DOUBLE,
     amount INT,
     detail TEXT,
-    price int,
+    price_old int default 0,
+    price_new int,
+    exp int default 12,
     is_delete INT DEFAULT 0,
     beer_type_id INT,
+    origin_id int,
+    brand_id int,
     customer_id int,
     FOREIGN KEY (beer_type_id)
         REFERENCES beer_type (id),
+        FOREIGN KEY (origin_id)
+        REFERENCES origin(id),
+        FOREIGN KEY (brand_id)
+        REFERENCES brand(id),
         foreign key (customer_id)
         references customer(id)
+);
+create table if not exists order_detail(
+id int primary key auto_increment,
+date_payment datetime,
+quantity int,
+is_delete bit default 0,
+customer_id int,
+beer_id int,
+foreign key(beer_id) references beer(id),
+foreign key(customer_id) references customer(id)
 )

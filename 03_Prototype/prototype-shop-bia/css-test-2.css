@@ -4,7 +4,6 @@ body {
     /*background: linear-gradient(135deg, rgba(123,211,232,1) 0%, rgba(232,123,165,1) 0%, rgba(255,50,50,1) 100%);*/
     color: white;
     overflow-x: hidden;
-
 }
 
 .sticky-lg-top h6 {
@@ -489,4 +488,7 @@ footer .ft-content h6 p {
     height: 70px;
     width: 300px;
     border-radius: 10px;
+}
+.card-body ul li{
+    list-style-type: none;
 }

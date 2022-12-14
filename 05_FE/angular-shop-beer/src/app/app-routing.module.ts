@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeRoutingModule} from './all-component/home/home-routing.module';
+import {DecentralizationModule} from './all-component/decentralization/decentralization.module';
+import {HomeModule} from './all-component/home/home.module';
+import {HeaderComponent} from './all-component/home/header/header.component';
 
 
 const routes: Routes = [
-  {path: 'home', loadChildren: () => HomeRoutingModule}
+  {path: '', loadChildren: () => HomeModule},
+  {path: 'login', loadChildren: () => DecentralizationModule},
 ];
 
 @NgModule({

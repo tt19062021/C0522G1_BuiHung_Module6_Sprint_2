@@ -184,7 +184,7 @@ body {
   background-color: white;
   font: normal 13px/1.5 Georgia, Serif;
   color: #333;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
 }
 
 .wrapper {
@@ -497,3 +497,15 @@ footer .ft-content h6 p {
 .card-body ul li{
   list-style-type: none;
 }
+/*login-body-form*/
+
+/*.underlineHover:after {*/
+/*  display: block;*/
+/*  left: 0;*/
+/*  bottom: -10px;*/
+/*  width: 0;*/
+/*  height: 2px;*/
+/*  background-color: black;*/
+/*  content: "";*/
+/*  transition: width 0.2s;*/
+/*}*/

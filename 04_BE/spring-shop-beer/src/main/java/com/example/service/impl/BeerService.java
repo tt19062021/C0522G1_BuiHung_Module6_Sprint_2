@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 public class BeerService implements IBeerService {
@@ -16,7 +18,23 @@ public class BeerService implements IBeerService {
     private IBeerRepository beerRepository;
 
     @Override
-    public Page<IBeerDto> findAllBeer(Pageable pageable) {
-        return beerRepository.findAllBeerByQuery(pageable);
+    public Page<IBeerDto> findAllBeer(Pageable pageable, String searchNameBeer) {
+        return beerRepository.findAllBeerByQuery(pageable, searchNameBeer);
     }
+
+    @Override
+    public Page<IBeerDto> findAllBeerByPrice(Pageable pageable, String searchNameBeer, Integer startPrice, Integer endPrice) {
+        return beerRepository.findAllBeerByPrice(pageable, searchNameBeer, startPrice, endPrice);
+    }
+
+    @Override
+    public Page<IBeerDto> findAllBeerByAlcohol(Pageable pageable, String searchNameBeer, Double startAlcohol, Double endAlcohol) {
+        return beerRepository.findAllBeerByAlcohol(pageable, searchNameBeer, startAlcohol, endAlcohol);
+    }
+
+    @Override
+    public Optional<IBeerDto> findBeerById(Integer id) {
+        return beerRepository.findBeerById(id);
+    }
+
 }

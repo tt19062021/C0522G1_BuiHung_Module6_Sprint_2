@@ -74,16 +74,12 @@ CREATE TABLE IF NOT EXISTS beer_type (
     name VARCHAR(100),
     is_delete bit default 0
 );
-CREATE TABLE IF NOT EXISTS image (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(100),
-    is_delete bit default 0
-);
+
 CREATE TABLE IF NOT EXISTS beer (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(150),
     alcohol DOUBLE,
-    volume DOUBLE,
+    volume int,
     amount INT,
     detail TEXT,
     price_old int default 0,
@@ -93,14 +89,13 @@ CREATE TABLE IF NOT EXISTS beer (
     beer_type_id INT,
     origin_id int,
     brand_id int,
-	image_id int,
+    image text,
     FOREIGN KEY (beer_type_id)
         REFERENCES beer_type (id),
         FOREIGN KEY (origin_id)
         REFERENCES origin(id),
         FOREIGN KEY (brand_id)
-        REFERENCES brand(id),
-        foreign key(image_id) references image(id)
+        REFERENCES brand(id)
 );
 create table if not exists order_detail(
 customer_id int,
@@ -109,4 +104,11 @@ is_delete bit default 0,
 foreign key(customer_id) references customer(id),
 foreign key(beer_id) references beer(id),
 primary key(customer_id, beer_id)
+);
+CREATE TABLE IF NOT EXISTS image (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name text,
+    is_delete bit default 0,
+    beer_id int,
+    foreign key(beer_id) references beer(id)
 );

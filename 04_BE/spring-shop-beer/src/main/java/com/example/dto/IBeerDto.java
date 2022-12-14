@@ -1,6 +1,7 @@
 package com.example.dto;
 
 public interface IBeerDto {
+    Integer getBeerId();
     String getBeerName();
     Double getBeerAlcohol();
     Integer getBeerVolume();

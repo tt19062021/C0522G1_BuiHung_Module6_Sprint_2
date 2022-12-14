@@ -1,0 +1,27 @@
+.login-body{
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 90px;
+  text-align: center;
+}
+.login-body .title h1{
+  color: #000000;
+  padding: 0px 0px 15px 0px;
+  margin: 0px 0px 15px 0px;
+  border-bottom: 1px solid #a50318;
+  font-family: "Book Antiqua";
+  text-transform: uppercase;;
+}
+.login-body .form-login-size{
+  margin: auto;
+  height: 300px;
+  width: 30%;
+}
+.login-body .form-login-size .button-fb{
+  height: 35px;
+  width: 170px;
+}
+.login-body .form-login-size .form-group .form-control{
+  border-radius: 10px;
+  border-bottom: 2px solid #a50318;
+}

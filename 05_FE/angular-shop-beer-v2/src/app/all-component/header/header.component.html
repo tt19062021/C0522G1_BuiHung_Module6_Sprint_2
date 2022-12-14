@@ -1,0 +1,77 @@
+<div class="row sticky-lg-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: #e3f2fd;">
+    <div class="container-fluid">
+      <a routerLink=""><img src="../../../../assets/picture/beer-thor-yellow1.png"
+                                    style="height: 80px; width: 200px"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          <li class="nav-item dropdown ms-1 pt-2 ">
+            <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdown"
+               role="button"
+               data-bs-toggle="dropdown"
+               aria-expanded="false">
+              DANH MỤC BIA
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="border-radius: 10px">
+              <li>
+                <h6 class="dropdown-item" href="#">BIA NHẬP KHẨU</h6>
+              </li>
+              <li><h6 class="dropdown-item" href="#">BIA TRONG NƯỚC</h6></li>
+            </ul>
+          </li>
+          <li class="nav-item ms-1 pt-2 ">
+            <a class="nav-link active " aria-current="page" href="#" style="color: white">BIA NÓNG</a>
+
+          </li>
+          <li class="nav-item ms-1 pt-2">
+            <a class="nav-link active " aria-current="page" href="#" style="color: white">KHUYẾN MÃI</a>
+          </li>
+          <li class="nav-item ms-1 pt-2">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white">LIÊN HỆ</a>
+          </li>
+          <!--          <li class="nav-item ms-1 pt-2">-->
+          <!--            <a class="nav-link active" aria-current="page" href="#" style="color: white">-->
+          <!--              <i class="fa fa-cart-shopping"></i></a>-->
+          <!--          </li>-->
+          <li class="nav-item ms-1">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white"></a>
+          </li>
+          <li class="nav-item ms-1">
+            <a class="nav-link active" aria-current="page" href="#" style="color: white"></a>
+          </li>
+
+          <!--          login-->
+          <li class="nav-item ms-1 ">
+            <div class="navbar navbar-expand-lg navbar-nav action-buttons">
+              <!--        login-->
+              <div class="nav-item dropdown mr-1">
+                <a><span style="color: yellow">{{username}}</span></a>
+                <a routerLink="/login" *ngIf="username==''" class="btn btn-danger" style="color: white">
+                  <i class="fa fa-right-to-bracket"></i> Tài Khoản</a>
+                <span>||</span>
+                <a (click)="whenLogout()" *ngIf="username!=''" class="btn btn-danger"> Đăng xuất</a>
+              </div>
+              <!--                          logout-->
+              <div class="nav-item">
+                <a href="#" data-toggle="dropdown"
+                   class="btn btn-danger mr-4" style="color: white">
+                  <i class="fa fa-cart-shopping"></i> Giỏ Hàng (0)</a>
+              </div>
+            </div>
+          </li>
+
+        </ul>
+        <!--        <form class="d-flex pb-2">-->
+        <!--          <input class="form-control" type="search" placeholder="Tìm tên bia..." aria-label="Search">-->
+        <!--          <button class="btn btn-danger" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>-->
+        <!--        </form>-->
+      </div>
+    </div>
+  </nav>
+</div>
+

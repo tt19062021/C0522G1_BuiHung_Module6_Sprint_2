@@ -3,6 +3,8 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {IBeerDto} from '../../../dto/i-beer-dto';
 import {HomeService} from '../../../service/home.service';
 import {Title} from '@angular/platform-browser';
+import {Router} from '@angular/router';
+import {ICartDto} from '../../../dto/i-cart-dto';
 
 @Component({
   selector: 'app-page-home',
@@ -23,9 +25,10 @@ export class PageHomeComponent implements OnInit {
   startAlcohol = 0;
   endAlcohol = 0;
   alcohol = '';
-
+  item: ICartDto[];
   constructor(private homeService: HomeService,
-              private title: Title) {
+              private title: Title,
+              private router: Router) {
     this.title.setTitle('THOR-BEER');
   }
 
@@ -37,7 +40,7 @@ export class PageHomeComponent implements OnInit {
     this.homeService.findAllBeer(this.page, this.pageSize, this.beerNameSearch,
       this.startPrice, this.endPrice).subscribe(data => {
       if (data != null) {
-        console.log(data.content);
+        // console.log(data.content);
         this.action = true;
         this.beerListDto$ = new BehaviorSubject<IBeerDto[]>(data.content);
         this.total$ = new BehaviorSubject<number>(data.totalElements);
@@ -46,15 +49,21 @@ export class PageHomeComponent implements OnInit {
       }
     });
   }
+
+  getIdBeer(beerId: number) {
+    // console.log(beerId + 'ok');
+    this.router.navigateByUrl('/detail/' + beerId);
+  }
+
   nextPage() {
     this.pageSize += 4;
     this.paginate();
   }
-
   searchByPrice() {
     console.log(this.price);
     switch (this.price) {
       case 1:
+        this.startPrice = 0;
         this.endPrice = 199999;
         break;
       case 2:
@@ -108,4 +117,9 @@ export class PageHomeComponent implements OnInit {
   //   }
   //   this.paginateByAlcohol();
   // }
+  addToCart(item: IBeerDto) {
+    this.homeService.updateCart(item).subscribe(() => {
+      // this.messageService.add({severity: 'success', summary: 'Success', detail: 'Add successfully'});
+    });
+  }
 }

@@ -34,11 +34,11 @@ CREATE TABLE IF NOT EXISTS user_role (
         REFERENCES role (id),
     PRIMARY KEY (username , role_id)
 );
-CREATE TABLE IF NOT EXISTS customer_type (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(30),
-    is_delete BIT DEFAULT 0
-);
+-- CREATE TABLE IF NOT EXISTS customer_type (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     name VARCHAR(30),
+--     is_delete BIT DEFAULT 0
+-- );
 
 CREATE TABLE IF NOT EXISTS customer (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,9 +53,7 @@ CREATE TABLE IF NOT EXISTS customer (
     username VARCHAR(30) UNIQUE,
     customer_type_id INT,
     FOREIGN KEY (username)
-        REFERENCES user (username),
-    FOREIGN KEY (customer_type_id)
-        REFERENCES customer_type (id)
+        REFERENCES user (username)
 );
 -- xuất xứ
 CREATE TABLE IF NOT EXISTS origin(
@@ -97,13 +95,12 @@ CREATE TABLE IF NOT EXISTS beer (
         FOREIGN KEY (brand_id)
         REFERENCES brand(id)
 );
-create table if not exists order_detail(
-customer_id int,
+create table if not exists cart(
+id INT PRIMARY KEY AUTO_INCREMENT,
+quantity int,
 beer_id int,
 is_delete bit default 0,
-foreign key(customer_id) references customer(id),
-foreign key(beer_id) references beer(id),
-primary key(customer_id, beer_id)
+foreign key(beer_id) references beer(id)
 );
 CREATE TABLE IF NOT EXISTS image (
     id INT PRIMARY KEY AUTO_INCREMENT,

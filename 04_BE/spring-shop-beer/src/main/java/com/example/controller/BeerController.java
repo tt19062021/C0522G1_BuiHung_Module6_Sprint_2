@@ -1,10 +1,18 @@
 package com.example.controller;
 
+import com.example.dto.ICartDto;
 import com.example.dto.IBeerDto;
+import com.example.dto.ITotalDto;
 import com.example.jwt.JwtTokenUtil;
+import com.example.model.beer.Image;
+import com.example.model.cart.Cart;
+import com.example.model.customer.Customer;
 import com.example.payload.request.LoginRequest;
 import com.example.payload.request.LoginResponse;
 import com.example.service.IBeerService;
+import com.example.service.ICustomerService;
+import com.example.service.IImageService;
+import com.example.service.ICartService;
 import com.example.service.decentralization.impl.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,6 +26,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +42,13 @@ public class BeerController {
     private AuthenticationManager authenticationManager;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private IImageService imageService;
+
+    @Autowired
+    private ICustomerService customerService;
+    @Autowired
+    private ICartService cartService;
 
     @GetMapping("/list")
     public ResponseEntity<Page<IBeerDto>> findAllBeer(
@@ -55,14 +71,24 @@ public class BeerController {
         return new ResponseEntity<>(iBeerDtoPage, HttpStatus.OK);
     }
     @GetMapping("/find-id-beer/{id}")
-    public ResponseEntity<?> findBeerById(@PathVariable Integer beerId) {
-        Optional<IBeerDto> beerDtoOptional = beerService.findBeerById(beerId);
+    public ResponseEntity<?> findBeerById(@PathVariable Integer id) {
+        Optional<IBeerDto> beerDtoOptional = beerService.findBeerById(id);
         if (beerDtoOptional.isPresent()) {
             return new ResponseEntity<>(beerDtoOptional, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+    @GetMapping("/find-all-image/{id}")
+    public ResponseEntity<?> findAllImage(@PathVariable Integer id) {
+        List<Image> imageList = imageService.findAllImage(id);
+        if (imageList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
+        }
+        return new ResponseEntity<>(imageList, HttpStatus.OK);
 
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -78,5 +104,48 @@ public class BeerController {
                         jwt,
                         myUserDetails.getUsername(),
                         roles));
+    }
+
+    @GetMapping("/cart")
+    public ResponseEntity<List<ICartDto>> getCartList() {
+        List<ICartDto> cartDtos = cartService.getCartList();
+        if (cartDtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(cartDtos, HttpStatus.OK);
+    }
+
+    @GetMapping("/total-bill")
+    public ResponseEntity<ITotalDto> getTotalBill() {
+        ITotalDto totalBill = cartService.getTotalBill();
+        if (totalBill == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(totalBill, HttpStatus.OK);
+    }
+
+    @PostMapping("/cart-update")
+    public ResponseEntity<?> updateCart(@RequestParam Integer id) {
+        ICartDto cartDto = cartService.findById(id);
+        if (cartDto == null) {
+            cartService.insertToCart(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        cartService.updateCart(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PatchMapping("/qty-update")
+    public ResponseEntity<?> updateQty(@RequestParam Integer id,
+                                       @RequestParam Integer quantity) {
+
+        cartService.updateQty(id, quantity);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/remove-cart/{id}")
+    public ResponseEntity<Cart> removeCart(@PathVariable("id") Integer id) {
+        cartService.deleteProduct(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

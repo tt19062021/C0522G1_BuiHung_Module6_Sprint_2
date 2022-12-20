@@ -19,10 +19,6 @@ public class Customer {
     private String address;
     private String phoneNumber;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_type_id", referencedColumnName = "id")
-    private CustomerType customerType;
-
     @OneToOne
 
     @JoinColumn(name = "username", referencedColumnName = "username")
@@ -32,7 +28,7 @@ public class Customer {
     }
 
     public Customer(Integer id, String name, boolean isDelete, String dayOfBirth, Integer gender, String idCard,
-                    String email, String address, String phoneNumber, CustomerType customerType, User user) {
+                    String email, String address, String phoneNumber, User user) {
         this.id = id;
         this.name = name;
         this.isDelete = isDelete;
@@ -42,7 +38,6 @@ public class Customer {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.customerType = customerType;
         this.user = user;
     }
 
@@ -116,14 +111,6 @@ public class Customer {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public CustomerType getCustomerType() {
-        return customerType;
-    }
-
-    public void setCustomerType(CustomerType customerType) {
-        this.customerType = customerType;
     }
 
     public User getUser() {

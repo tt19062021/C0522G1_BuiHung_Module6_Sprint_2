@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface IBeerRepository extends JpaRepository<Beer, Integer> {
 
-    @Query(value = "select beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
+    @Query(value = "select beer.id as beerId, beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
             "beer.detail as beerDetail, beer.price_old as beerPriceOld, beer.price_new as beerPriceNew, " +
             "beer.exp as beerExp, beer_type.name as beerTypeName, origin.name as originName, brand.name as brandName " +
             "from beer " +
@@ -33,7 +33,7 @@ public interface IBeerRepository extends JpaRepository<Beer, Integer> {
     Page<IBeerDto> findAllBeerByQuery(Pageable pageable,
                                       @Param("nameSearch") String nameSearch);
 
-    @Query(value = "select beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
+    @Query(value = "select beer.id as beerId, beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
             "beer.detail as beerDetail, beer.price_old as beerPriceOld, beer.price_new as beerPriceNew, " +
             "beer.exp as beerExp, beer_type.name as beerTypeName, origin.name as originName, brand.name as brandName " +
             "from beer " +
@@ -56,7 +56,7 @@ public interface IBeerRepository extends JpaRepository<Beer, Integer> {
                                       @Param("startPrice") Integer startPrice,
                                       @Param("endPrice") Integer endPrice);
 
-    @Query(value = "select beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
+    @Query(value = "select beer.id as beerId, beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
             "beer.detail as beerDetail, beer.price_old as beerPriceOld, beer.price_new as beerPriceNew, " +
             "beer.exp as beerExp, beer_type.name as beerTypeName, origin.name as originName, brand.name as brandName " +
             "from beer " +
@@ -80,14 +80,15 @@ public interface IBeerRepository extends JpaRepository<Beer, Integer> {
                                         @Param("endAlcohol") Double endAlcohol);
     @Query(value = "select beer.id as beerId, beer.name as beerName,beer.alcohol as beerAlcohol,beer.volume as beerVolume, " +
             "beer.detail as beerDetail,beer.price_old as beerPriceOld,beer.price_new as beerPriceNew, " +
-            "beer.exp as beerExp,beer_type.name as beerTypeName,origin.name as originName,brand.name as brandName " +
+            "beer.exp as beerExp,beer_type.name as beerTypeName,origin.name as originName,brand.name as brandName, " +
+            "beer.image as beerImage " +
             "from beer " +
             "join beer_type on beer.beer_type_id = beer_type.id " +
             "join origin on beer.origin_id = origin.id " +
             "join brand on beer.brand_id = brand.id " +
-            "where beer.id = :beerId " +
+            "where beer.id = :id " +
             "and beer.is_delete = 0 ", nativeQuery = true)
-    Optional<IBeerDto> findBeerById(@Param("beerId") Integer beerId);
+    Optional<IBeerDto> findBeerById(@Param("id") Integer id);
 
 //    @Query(value = "select beer.image as beerImage, beer.name as beerName, beer.alcohol as beerAlcohol, beer.volume as beerVolume, " +
 //            "beer.detail as beerDetail, beer.price_old as beerPriceOld, beer.price_new as beerPriceNew, " +

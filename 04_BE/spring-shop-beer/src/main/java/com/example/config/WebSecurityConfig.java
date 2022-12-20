@@ -49,7 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable().
                 authorizeRequests()
                 .antMatchers("/api/beer/**"
-
                 )
                 .permitAll()
 

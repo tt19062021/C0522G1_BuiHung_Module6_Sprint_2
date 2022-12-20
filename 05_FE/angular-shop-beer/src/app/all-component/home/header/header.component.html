@@ -1,7 +1,8 @@
 <div class="row sticky-lg-top">
   <nav class="navbar navbar-expand-lg navbar-light bg-danger" style="background-color: #e3f2fd;">
     <div class="container-fluid">
-      <a href="home-page.html"><img src="../../../../assets/picture/beer-thor-yellow1.png" style="height: 80px; width: 200px"></a>
+      <a routerLink=""><img src="../../../../assets/picture/beer-thor-yellow1.png"
+                            style="height: 80px; width: 200px"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,7 +36,7 @@
           </li>
           <li class="nav-item ms-1 pt-2">
             <a class="nav-link active" aria-current="page" href="#" style="color: white">
-              </a>
+            </a>
           </li>
           <li class="nav-item ms-1">
             <a class="nav-link active" aria-current="page" href="#" style="color: white"></a>
@@ -48,87 +49,53 @@
             <nav class="navbar navbar-expand-lg" style="margin:auto;">
               <div class="navbar-nav action-buttons">
                 <!--        login-->
+
                 <div class="nav-item dropdown mr-1">
-                  <div class="nav-item dropdown mr-1">
-                    <a><span style="color: yellow">{{username}}</span></a>
-                    <a *ngIf="username==''" class="btn btn-danger" style="color: white" data-toggle="dropdown">
-                      <i class="fa fa-right-to-bracket"></i> Tài Khoản</a>
-                    <div class="dropdown-menu action-form" style="border-radius: 10px">
-                      <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-                        <p class="hint-text">Đăng nhập bằng tài khoản của bạn</p>
-                        <div class="form-group social-btn clearfix">
-                          <a href="#" class="btn btn-secondary facebook-btn float-left"><i
-                            class="fa fa-facebook"></i> Facebook</a>
-                          <a href="#" class="btn btn-secondary twitter-btn float-right"><i
-                            class="fa fa-twitter"></i> Twitter</a>
-                        </div>
-                        <div class="or-seperator"><b>or</b></div>
-                        <div class="form-group">
-                          <label> <span class="text-danger"
-                                        *ngIf="formGroup.controls.username.hasError('required')
+                  <a><span style="color: yellow">{{username}}</span></a>
+                  <a *ngIf="username==''" class="btn btn-danger" style="color: white" data-toggle="dropdown">
+                    <i class="fa fa-right-to-bracket"></i> Tài Khoản</a>
+                  <div class="dropdown-menu action-form" style="border-radius: 10px">
+                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+                      <p class="hint-text">Đăng nhập bằng tài khoản của bạn</p>
+                      <div class="form-group social-btn clearfix">
+                        <a href="#" class="btn btn-secondary facebook-btn float-left"><i
+                          class="fa fa-facebook"></i> Facebook</a>
+                        <a href="#" class="btn btn-secondary twitter-btn float-right"><i
+                          class="fa fa-twitter"></i> Twitter</a>
+                      </div>
+                      <div class="or-seperator"><b>or</b></div>
+                      <div class="form-group">
+                        <label> <span class="text-danger"
+                                      *ngIf="formGroup.controls.username.hasError('required')
                   && formGroup.controls.username.dirty">
             Vui lòng nhập tài khoản !</span></label>
-                          <input type="text" class="form-control" placeholder="Tên đăng nhập"
-                                 required="required" formControlName="username">
-                        </div>
-                        <div class="form-group">
-                          <label> <span class="text-danger"
-                                        *ngIf="formGroup.controls.password.hasError('required')
+                        <input type="text" class="form-control" placeholder="Tên đăng nhập"
+                               required="required" formControlName="username">
+                      </div>
+                      <div class="form-group">
+                        <label> <span class="text-danger"
+                                      *ngIf="formGroup.controls.password.hasError('required')
                   && formGroup.controls.password.dirty">
             Vui lòng nhập mật khẩu !</span></label>
-                          <input type="password" class="form-control" placeholder="Mật khẩu"
-                                 required="required" formControlName="password">
-                        </div>
-                        <input type="submit" class="btn btn-primary btn-block" value="Đăng nhập">
-                        <div class="text-center mt-2">
-                          <a href="#">Quên mật khẩu</a>
-                        </div>
-                      </form>
-                    </div>
-                    <span>||</span>
-                    <a (click)="whenLogout()" *ngIf="username!=''" class="btn btn-danger"> Đăng xuất</a>
+                        <input type="password" class="form-control" placeholder="Mật khẩu"
+                               required="required" formControlName="password">
+                      </div>
+                      <input type="submit" class="btn btn-primary btn-block" value="Đăng nhập">
+                      <div class="text-center mt-2">
+                        <a href="#">Quên mật khẩu</a>
+                      </div>
+                    </form>
                   </div>
-<!--                  <a href="#" data-toggle="dropdown" *ngIf="username!==''" class="nav-link dropdown-toggle mr-1 btn btn-light" style="color: white">-->
-<!--                    <i class="fa fa-right-to-bracket"></i> Đăng Nhập</a>-->
-<!--                  <div class="dropdown-menu action-form" style="border-radius: 10px">-->
-<!--                    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">-->
-<!--                      <p class="hint-text">Đăng nhập bằng tài khoản của bạn</p>-->
-<!--                      <div class="form-group social-btn clearfix">-->
-<!--                        <a href="#" class="btn btn-secondary facebook-btn float-left"><i-->
-<!--                          class="fa fa-facebook"></i> Facebook</a>-->
-<!--                        <a href="#" class="btn btn-secondary twitter-btn float-right"><i-->
-<!--                          class="fa fa-twitter"></i> Twitter</a>-->
-<!--                      </div>-->
-<!--                      <div class="or-seperator"><b>or</b></div>-->
-<!--                      <div class="form-group">-->
-<!--                        <label> <span class="text-danger"-->
-<!--                                      *ngIf="formGroup.controls.username.hasError('required')-->
-<!--                  && formGroup.controls.username.dirty">-->
-<!--            Vui lòng nhập tài khoản !</span></label>-->
-<!--                        <input type="text" class="form-control" placeholder="Tên đăng nhập"-->
-<!--                               required="required" formControlName="username">-->
-<!--                      </div>-->
-<!--                      <div class="form-group">-->
-<!--                        <label> <span class="text-danger"-->
-<!--                                      *ngIf="formGroup.controls.password.hasError('required')-->
-<!--                  && formGroup.controls.password.dirty">-->
-<!--            Vui lòng nhập mật khẩu !</span></label>-->
-<!--                        <input type="password" class="form-control" placeholder="Mật khẩu"-->
-<!--                               required="required" formControlName="password">-->
-<!--                      </div>-->
-<!--                      <input type="submit" class="btn btn-primary btn-block" value="Đăng nhập">-->
-<!--                      <div class="text-center mt-2">-->
-<!--                        <a href="#">Quên mật khẩu</a>-->
-<!--                      </div>-->
-<!--                    </form>-->
-<!--                  </div>-->
+                  <span>||</span>
+                  <a (click)="whenLogout()" *ngIf="username!=''" class="btn btn-danger"> Đăng xuất</a>
                 </div>
+
                 <div class="nav-item dropdown">
-                  <a href="#" data-toggle="dropdown"
-                     class="btn btn-light nav-link dropdown-toggle mr-4" style="color: white" *ngIf="username==''" >Đăng
+                  <a data-toggle="dropdown"
+                     class="btn btn-light nav-link dropdown-toggle mr-4" style="color: white" *ngIf="username==''">Đăng
                     ký</a>
                   <div class="dropdown-menu action-form" style="border-radius: 10px">
-                    <form >
+                    <form>
                       <p class="hint-text">Điền vào biểu mẫu này để tạo tài khoản của bạn!</p>
                       <div class="form-group">
                         <input type="text" class="form-control" placeholder="Tên đăng nhập"
@@ -152,11 +119,10 @@
                     </form>
                   </div>
                 </div>
-
                 <!--                          logout-->
                 <div class="nav-item">
                   <a href="#" data-toggle="dropdown"
-                     class="btn btn-danger mr-4" style="color: white">
+                     class="btn btn-danger mr-4" style="color: white" routerLink="/cart">
                     <i class="fa fa-cart-shopping"></i> Giỏ Hàng (0)</a>
                 </div>
               </div>

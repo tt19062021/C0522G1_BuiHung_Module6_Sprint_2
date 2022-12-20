@@ -1,47 +1,0 @@
-
-NWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(Ê‡¿áşÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(ĞÌï
-IWeb:AvoidCommentedOutCodeCheck "Remove this commented out code.(¦é’©
-IWeb:AvoidCommentedOutCodeCheck!"Remove this commented out code.(„ø…
-IWeb:AvoidCommentedOutCodeCheck""Remove this commented out code.(‹ü­½
-NWeb:AvoidCommentedOutCodeCheck'"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheck("Remove this commented out code.(œ›Ûîùÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck)"Remove this commented out code.(ÊœÕˆ
-NWeb:AvoidCommentedOutCodeCheck*"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheck+"Remove this commented out code.(Ÿ’¶ıÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck,"Remove this commented out code.(ÊœÕˆ
-NWeb:AvoidCommentedOutCodeCheck-"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheck."Remove this commented out code.(•ĞÛøÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck/"Remove this commented out code.(ÊœÕˆ
-NWeb:AvoidCommentedOutCodeCheck0"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheck1"Remove this commented out code.(»ì•üÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck2"Remove this commented out code.(ÊœÕˆ
-NWeb:AvoidCommentedOutCodeCheck3"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheck4"Remove this commented out code.(¼ÿ€úÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck5"Remove this commented out code.(ÊœÕˆ
-NWeb:AvoidCommentedOutCodeCheck6"Remove this commented out code.(œß¬Ğùÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck7"Remove this commented out code.(ÿÕ‚ä
-IWeb:AvoidCommentedOutCodeCheck8"Remove this commented out code.(ÊœÕˆ
-IWeb:AvoidCommentedOutCodeCheck9"Remove this commented out code.(‹ü­½
-NWeb:AvoidCommentedOutCodeCheck;"Remove this commented out code.(İ®‡œüÿÿÿÿ
-XWeb:FrameWithoutTitleCheckW"-Add a "title" attribute to this <iframe> tag.(¤¨ƒ˜şÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheckd"Remove this commented out code.(—¸Îøúÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheckf"Remove this commented out code.(×öŠÅøÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheckh"Remove this commented out code.(á˜…Ê
-NWeb:AvoidCommentedOutCodeChecki"Remove this commented out code.(Î÷¡áÿÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheckk"Remove this commented out code.(¤„±û
-NWeb:AvoidCommentedOutCodeCheckl"Remove this commented out code.(Î÷¡áÿÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheckn"Remove this commented out code.(ğáÉò
-NWeb:AvoidCommentedOutCodeChecko"Remove this commented out code.(Î÷¡áÿÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheckq"Remove this commented out code.(ôóÈ—ûÿÿÿÿ
-NWeb:AvoidCommentedOutCodeCheckr"Remove this commented out code.(Î÷¡áÿÿÿÿÿ
-BWeb:BoldAndItalicTagsCheckz"Replace this <i> tag by <em>.(²„ï
-BWeb:BoldAndItalicTagsCheck}"Replace this <i> tag by <em>.(çÎ»$
-IWeb:BoldAndItalicTagsCheck€"Replace this <i> tag by <em>.(ˆ½¼—úÿÿÿÿ
-IWeb:BoldAndItalicTagsCheck"Replace this <i> tag by <em>.(É®®™şÿÿÿÿ
-IWeb:AvoidCommentedOutCodeCheck‹"Remove this commented out code.(ıˆÈu
-JWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(Àâ½
-JWeb:AvoidCommentedOutCodeCheck"Remove this commented out code.(‹ü­½
-HWeb:ImgWithoutAltCheck¦"%Add an "alt" attribute to this image.(ÃÖ¼Î
-HWeb:ImgWithoutAltCheckª"%Add an "alt" attribute to this image.(Áº‚‚
-HWeb:ImgWithoutAltCheck¬"%Add an "alt" attribute to this image.(¡ïåƒ

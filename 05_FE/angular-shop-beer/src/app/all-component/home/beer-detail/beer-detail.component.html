@@ -1,1 +1,118 @@
-<p>beer-detail works!</p>
+<div class="row product-detail-body" xmlns="http://www.w3.org/1999/html">
+  <div class="col-lg-6">
+    <!--        <div class="product-detail">-->
+    <!--            <img src="https://cdn.tgdd.vn/Products/Images/2282/214410/bhx/thung-20-lon-bia-budweiser-330ml-202210081403287921_300x300.jpg"-->
+    <!--                 alt="">-->
+    <!--        </div>-->
+    <!-- The grid: four columns -->
+    <div class="row-product">
+      <div class="column-product" *ngFor="let item of imageList">
+        <img
+          src="{{item.name}}"
+          alt="Nature" onclick="myFunction(this);">
+      </div>
+    </div>
+    <!-- The expanding image container -->
+    <div class="container">
+      <!-- Close the image -->
+      <!-- Expanded image -->
+      <img src="{{beerList.beerImage}}" id="expandedImg" style="width:60%; margin-left:20%">
+      <!-- Image text -->
+      <div id="imgtext"></div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="product-detail-content">
+      <div>
+        <h3>{{beerList.beerName}}</h3>
+      </div>
+      <div>
+        <span><b>Thương hiệu:</b> {{beerList.brandName}} </span>
+        <span>|</span>
+        <span><b>Loại: </b>{{beerList.beerTypeName}}</span>
+        <span>|</span>
+        <span><b>Ma SP:</b>{{beerList.beerId}}</span>
+        <hr style="color: #a50318;">
+      </div>
+      <div>
+        <span style="font-size: 20px;color: red;">  {{beerList.beerPriceNew | number}} ₫</span>
+        <span><s style="font-size: 13px;color: #999999;">  {{beerList.beerPriceOld}}₫</s></span>
+        <span
+          *ngIf="beerList.beerPriceOld > beerList.beerPriceNew">  (Bạn đã tiết kiệm được) {{beerList.beerPriceOld - beerList.beerPriceNew}}
+          ₫</span>
+      </div>
+      <hr style="color: #a50318;">
+      <div>
+        <ul>
+          <!--          <li>Loại: {{beerList.}}</li>-->
+          <li><b>Nồng độ cồn: </b>{{beerList.beerAlcohol}}%</li>
+          <li><b>Dung tích:</b> {{beerList.beerVolume}} ml</li>
+          <li><b>Xuất xứ: </b>{{beerList.originName}}</li>
+          <li><b>Nơi sản xuất:</b> {{beerList.originName}}</li>
+          <li><b>Hạn sử dụng:</b> {{beerList.beerExp}} tháng kể từ ngày sản xuất (in trên bao bì)</li>
+          <li><b>Lưu ý:</b>
+            <span> Sản phẩm dành cho người trên 18 tuổi và không dành cho phụ nữ mang thai. Thưởng thức có trách nhiệm, đã uống đồ uống có cồn thì không lái xe</span>
+          </li>
+        </ul>
+        <div class="view-detail">
+          <div>
+            <button class="btn btn-danger" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                    aria-expanded="false" aria-controls="collapseExample">
+              Xem thêm >>
+            </button>
+            <div class="collapse" id="collapseExample">
+              <div class="card card-body">
+                {{beerList.beerDetail}}
+                <ul>
+                  <b>- Lưu ý khi sử dụng và cách bảo quản sản phẩm</b>
+                  <li> + Ngon hơn khi uống lạnh bằng cách ướp lạnh hoặc uống với đá</li>
+                  <li> + Không để bia trong ngăn đá tủ lạnh</li>
+                  <li> + Để nơi khô ráo thoáng mát</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr style="color: #a50318;">
+      <span><b>Số Lượng : </b></span>
+      <div>
+        <!--        class="minus is-form"-->
+        <!--        class="plus is-form"-->
+        <!--        "input-qty"-->
+        <div class="buttons_added">
+          <a class="heart-icon hover-gray minus is-form" (click)="descQuantity()" *ngIf="quantityChoose > 1">
+            <i class="fa fa-minus" aria-hidden="true"></i></a>
+          <a class="heart-icon minus is-form" style="cursor: no-drop" *ngIf="quantityChoose <= 1">
+            <i class="fa fa-minus" aria-hidden="true"></i></a>
+
+          <a class="heart-icon input-qty" style="background-color: white">{{quantityChoose}}</a>
+
+          <a class="heart-icon hover-gray plus is-form" (click)="ascQuantity()" *ngIf="quantityChoose < 3">
+            <i class="fa fa-plus" aria-hidden="true"></i></a>
+          <a class="heart-icon plus is-form" style="cursor: no-drop" *ngIf="quantityChoose >= 3">
+            <i class="fa fa-plus" aria-hidden="true"></i></a>
+
+        </div>
+        <div class="view-detail" style="float: right; margin-right: 50%; color: white">
+          <a type="button" class="btn btn-danger button-design" role="button" routerLink="/cart">
+            <i class="fa fa-cart-shopping"></i> THÊM VÀO GIỎ
+          </a>
+        </div>
+      </div>
+      <hr style="color: #a50318;">
+      <div>
+        <span><i class="fa fa-mobile"></i><b> Hotline hỗ trợ: </b></span>
+        <a href="tel:02366517021" style="color: #333333">02366517021</a>
+      </div>
+      <div>
+        <span><i class="fa fa-facebook"></i><b> Facebook: </b></span>
+        <a href="https://www.facebook.com/messages/t/347995745702867" style="color: #333333">CodeGym Đà Nẵng</a>
+      </div>
+      <div>
+        <span><i class="fa-solid fa-z"></i><b> Zalo: </b></span>
+        <a style="color: #333333">02366517021</a>
+      </div>
+    </div>
+  </div>
+</div>

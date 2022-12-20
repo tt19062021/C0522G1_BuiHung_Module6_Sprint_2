@@ -1,4 +1,5 @@
 export interface IBeerDto {
+  beerId: number;
   beerName: string;
   beerImage: string;
   beerAlcohol: number;

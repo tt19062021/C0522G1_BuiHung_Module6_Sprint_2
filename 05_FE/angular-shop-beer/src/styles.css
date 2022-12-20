@@ -190,7 +190,8 @@ body {
 .wrapper {
   width: 100%;
   margin: 20px auto;
-  padding: 20px;
+  /*padding: 20px;*/
+  /*margin-left: 10%;*/
 }
 
 .wrapper h1 {
@@ -208,11 +209,11 @@ body {
   clear: both;
 }
 
-.items {
-  display: block;
-  margin: 20px 0;
+/*.items {*/
+/*  display: block;*/
+/*  margin: 20px 0;*/
 
-}
+/*}*/
 
 .item {
   background-color: #fff;
@@ -220,7 +221,7 @@ body {
   margin: 0 10px 10px 0;
   padding: 10px;
   height: 350px;
-  width: 205px;
+  width: 240px;
   border-radius: 10px;
   border: 1px solid #a50318;
 }
@@ -321,7 +322,7 @@ footer .ft-content h6 p {
 /*dropdown collspase*/
 .dropdown-search-product {
   font-family: 'Varela Round', sans-serif;
-  padding-top: 45px;
+  padding-top: 5px;
   margin-left: 30px;
 }
 

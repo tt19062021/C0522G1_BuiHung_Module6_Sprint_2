@@ -5,8 +5,6 @@ import {SearchResult} from '../model/search-result';
 import {Observable} from 'rxjs';
 import {IBeerDto} from '../dto/i-beer-dto';
 import {IImage} from '../model/i-image';
-import {ICustomer} from '../model/i-customer';
-import {ICart} from '../model/i-cart';
 import {ICartDto} from '../dto/i-cart-dto';
 
 @Injectable({
@@ -52,23 +50,32 @@ export class HomeService {
     return this.httpClient.get<IImage[]>(this.API_BEER + '/beer/find-all-image/' + id);
   }
 
-  getCartList(): Observable<ICartDto[]> {
-    return this.httpClient.get<ICartDto[]>(this.API_BEER + '/beer/cart');
+  getCartList(username: string): Observable<ICartDto[]> {
+    return this.httpClient.get<ICartDto[]>(this.API_BEER + '/beer/cart' + '?username=' + username);
   }
 
-  getTotalBill(): Observable<ICartDto> {
-    return this.httpClient.get<ICartDto>(this.API_BEER + '/beer/total-bill');
+  getTotalBill(username: string): Observable<ICartDto> {
+    console.log(this.API_BEER + '/beer/total-bill' + '?username=' + username);
+    return this.httpClient.get<ICartDto>(this.API_BEER + '/beer/total-bill' + '?username=' + username);
   }
 
-  updateCart(beerDto: IBeerDto): Observable<void> {
-    return this.httpClient.post<void>(this.API_BEER + '/beer/cart-update' + '?id=' + beerDto.beerId, beerDto);
+  updateCart(ibeerDto: IBeerDto, username: string): Observable<void> {
+    return this.httpClient.post<void>(this.API_BEER + '/beer/cart-update' + '?id=' + ibeerDto.beerId + '&username=' + username, ibeerDto);
   }
 
-  updateQty(cartDto: ICartDto): Observable<void> {
-    return this.httpClient.patch<void>(this.API_BEER + '/beer/qty-update' + '?id=' + cartDto.id + '&quantity=' + cartDto.quantity, cartDto);
+  updateQty(cartDto: ICartDto, username: string): Observable<void> {
+    return this.httpClient.patch<void>(this.API_BEER + '/beer/qty-update' + '?id=' + cartDto.beerId +
+      '&quantity=' + cartDto.quantity + '&username=' + username, cartDto);
   }
 
   removeProduct(id: number): Observable<void> {
     return this.httpClient.get<void>(this.API_BEER + '/beer/remove-cart/' + id);
+  }
+
+  payment(username: string): Observable<void> {
+    return this.httpClient.get<void>(this.API_BEER + '/beer/payment/' + username);
+  }
+  history(username: string): Observable<ICartDto[]> {
+    return this.httpClient.get<ICartDto[]>(this.API_BEER + '/beer/history/' + username);
   }
 }

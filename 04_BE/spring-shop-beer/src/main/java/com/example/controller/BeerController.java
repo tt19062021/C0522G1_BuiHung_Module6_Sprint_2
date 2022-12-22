@@ -107,8 +107,9 @@ public class BeerController {
     }
 
     @GetMapping("/cart")
-    public ResponseEntity<List<ICartDto>> getCartList() {
-        List<ICartDto> cartDtos = cartService.getCartList();
+    public ResponseEntity<List<ICartDto>> getCartList(@RequestParam String username) {
+        Customer customer = customerService.findCustomerByUsername(username);
+        List<ICartDto> cartDtos = cartService.getCartList(customer.getId());
         if (cartDtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -116,8 +117,9 @@ public class BeerController {
     }
 
     @GetMapping("/total-bill")
-    public ResponseEntity<ITotalDto> getTotalBill() {
-        ITotalDto totalBill = cartService.getTotalBill();
+    public ResponseEntity<ITotalDto> getTotalBill(@RequestParam String username) {
+        Customer customer = customerService.findCustomerByUsername(username);
+        ITotalDto totalBill = beerService.getTotalBill(customer.getId());
         if (totalBill == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -125,27 +127,47 @@ public class BeerController {
     }
 
     @PostMapping("/cart-update")
-    public ResponseEntity<?> updateCart(@RequestParam Integer id) {
-        ICartDto cartDto = cartService.findById(id);
-        if (cartDto == null) {
-            cartService.insertToCart(id);
+    public ResponseEntity<?> updateCart(@RequestParam Integer id,
+                                        @RequestParam String username) {
+        IBeerDto iBeerDto = beerService.findById(id, username);
+        Customer customer = customerService.findCustomerByUsername(username);
+        if (iBeerDto == null ) {
+            beerService.insertProductToCart(id, customer.getId());
             return new ResponseEntity<>(HttpStatus.OK);
         }
-        cartService.updateCart(id);
+        beerService.addToCart(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PatchMapping("/qty-update")
     public ResponseEntity<?> updateQty(@RequestParam Integer id,
-                                       @RequestParam Integer quantity) {
-
-        cartService.updateQty(id, quantity);
-
+                                       @RequestParam(name = "quantity") Integer quantity,
+                                       @RequestParam String username) {
+        Customer customer = customerService.findCustomerByUsername(username);
+        if (quantity == 0) {
+            beerService.deleteProduct(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        beerService.updateQty(id, quantity, customer.getId());
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @GetMapping("/remove-cart/{id}")
     public ResponseEntity<Cart> removeCart(@PathVariable("id") Integer id) {
         cartService.deleteProduct(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/payment/{username}")
+    public ResponseEntity<Cart> payment(@PathVariable("username") String username) {
+        Customer customer = customerService.findCustomerByUsername(username);
+        cartService.payment(customer.getId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @GetMapping("/history/{username}")
+    public ResponseEntity<List<ICartDto>> showHistory(@PathVariable("username") String username) {
+        List<ICartDto> cartDtoList = cartService.historyShopping(username);
+        if (cartDtoList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(cartDtoList, HttpStatus.OK);
     }
 }

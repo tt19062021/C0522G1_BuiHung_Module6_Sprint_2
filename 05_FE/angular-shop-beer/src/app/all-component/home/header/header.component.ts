@@ -9,6 +9,7 @@ import {AuthenticationService} from '../../../service/authentication.service';
 import {AuthService} from '../../../service/auth.service';
 import {ShareService} from '../../../service/share.service';
 import {JwtResponseService} from '../../../service/jwt-response-service';
+import {ICartDto} from '../../../dto/i-cart-dto';
 
 @Component({
   selector: 'app-header',
@@ -19,12 +20,15 @@ export class HeaderComponent implements OnInit {
 
   formGroup: FormGroup;
   username: string;
+  cart: ICartDto;
+  countP: number;
   roles: string[] = [];
   isCustomer = false;
   isAdmin = false;
   isEmployee = false;
   returnUrl: string;
   socialUser: SocialUser;
+
   constructor(private router: Router,
               private tokenService: TokenStorageService,
               private authSocialService: SocialAuthService,
@@ -33,6 +37,7 @@ export class HeaderComponent implements OnInit {
               private formBuild: FormBuilder,
               private authService: AuthService,
               private route: ActivatedRoute,
+              private homeService: HomeService,
               private shareService: ShareService) {
     this.formGroup = this.formBuild.group({
         username: [''],
@@ -42,9 +47,11 @@ export class HeaderComponent implements OnInit {
     );
   }
 
+
   ngOnInit(): void {
     this.username = '';
     this.showUsername();
+    this.countProduct();
     // window.scroll({
     //   top: 0,
     //   left: 0,
@@ -89,6 +96,7 @@ export class HeaderComponent implements OnInit {
     this.isEmployee = false;
     this.isAdmin = false;
   }
+
   onSubmit() {
     this.authService.login(this.formGroup.value).subscribe(
       data => {
@@ -165,5 +173,14 @@ export class HeaderComponent implements OnInit {
   exit() {
     this.router.navigateByUrl('');
   }
+
+  countProduct(): void {
+    this.username = this.tokenService.getUser().username;
+    this.homeService.getTotalBill(this.username).subscribe(value => {
+      this.cart = value;
+      this.countP = value.countProduct;
+    });
+  }
+
 
 }

@@ -52,36 +52,30 @@ public interface ICartRepository extends JpaRepository<Cart, Integer> {
 //    Optional<Integer> sumQuantityCart(@Param("id") Integer id);
 
     @Query(value = "select (cart.quantity * beer.price_new) as sumPerOne, cart.id as id, cart.quantity as quantity, " +
-            "beer.name as name, beer.price_new as price, beer.image as image " +
+            "beer.name as name, beer.price_new as price, beer.image as image, beer.id as beerId " +
             "from cart " +
             "join beer on cart.beer_id = beer.id " +
-            "where cart.is_delete = 0 " +
-            "group by beer.id", nativeQuery = true)
-    List<ICartDto> getCartList();
+            "where cart.is_delete = 0 and cart.customer_id = :customerId " +
+            "group by beer.id ", nativeQuery = true)
+    List<ICartDto> getCartList(@Param("customerId") Integer customerId);
 
-    @Query(value = "select sum(cart.quantity * beer.price_new) as totalBill " +
-            "from cart " +
-            "join beer on cart.beer_id = beer.id " +
-            "where cart.is_delete = 0 ", nativeQuery = true)
-    ITotalDto getTotalBill();
 
-    @Modifying
-    @Query(value = "update cart set quantity = quantity + 1 " +
-            "where id = :id and is_delete = 0 ", nativeQuery = true)
-    void updateCart(@Param("id") Integer id);
-
-    @Modifying
-    @Query(value = "insert into cart(beer_id, quantity) values(:id, 1) ", nativeQuery = true)
-    void insertToCart(@Param("id") Integer id);
-
-    @Modifying
-    @Query(value = "update cart set quantity = :quantity " +
-            "where id = :id and is_delete = 0 ", nativeQuery = true)
-    void updateQty(Integer id, Integer quantity);
 
     @Query(value = "select * from cart where beer_id = :id and is_delete = 0 ", nativeQuery = true)
     ICartDto findByIdBeer(Integer id);
     @Modifying
     @Query(value = "DELETE FROM cart WHERE id = :id ", nativeQuery = true)
     void removeCart(@Param("id") Integer id);
+    @Modifying
+    @Query(value = "update cart set is_delete = 1 where customer_id =:customerId ", nativeQuery = true)
+    void payment(@Param("customerId") Integer customerId);
+    @Query(value = "select beer.name, " +
+            "cart.day_payment as datePayment, beer.price_new as price, " +
+            "cart.quantity as quantity, beer.image as image, " +
+            "(beer.price_new * cart.quantity) as sumPerOne " +
+            "from cart " +
+            "join customer on cart.customer_id = customer.id " +
+            "join beer on beer.id = cart.beer_id " +
+            "where username = :username and cart.is_delete = 1 ", nativeQuery = true)
+    List<ICartDto> findAllHistoryShopping(@Param("username") String username);
 }

@@ -8,11 +8,12 @@ import {PageHomeComponent} from './page-home/page-home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BeerDetailComponent} from './beer-detail/beer-detail.component';
 import { BeerCartComponent } from './beer-cart/beer-cart.component';
+import { HistoryShoppingComponent } from './history-shopping/history-shopping.component';
 
 
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, PageHomeComponent, BeerDetailComponent, BeerCartComponent],
+  declarations: [FooterComponent, HeaderComponent, PageHomeComponent, BeerDetailComponent, BeerCartComponent, HistoryShoppingComponent],
   exports: [
     FooterComponent, HeaderComponent, PageHomeComponent
   ],

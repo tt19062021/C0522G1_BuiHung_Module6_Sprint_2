@@ -4,6 +4,8 @@ import {HomeService} from '../../../service/home.service';
 import {Router} from '@angular/router';
 import {ICartDto} from '../../../dto/i-cart-dto';
 import {render} from 'creditcardpayments/creditCardPayments';
+import {TokenStorageService} from '../../../service/token-storage.service';
+import {IBeerDto} from '../../../dto/i-beer-dto';
 
 
 @Component({
@@ -14,43 +16,66 @@ import {render} from 'creditcardpayments/creditCardPayments';
 export class BeerCartComponent implements OnInit {
   cart: ICartDto[];
   totalBill: number;
+  username: string;
+  action = true;
 
   constructor(private homeService: HomeService,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStorageService) {
   }
 
   ngOnInit(): void {
+    this.username = this.tokenService.getUser().username;
     this.getAllCart();
     this.getTotalBill();
   }
-  payPaltoBill() {
-    render({
-      id: '#myPayPal',
-      currency: 'USD',
-      value: '100.00',
-      onApprove: details => {
-        alert('Transaction Successful');
-      }
+
+  paidBill() {
+    this.homeService.payment(this.username).subscribe(value => {
+      console.log(this.username);
     });
   }
 
+  payment(): void {
+    this.action = false;
+    render(
+      {
+        id: '#myPaypal',
+        value: String((this.totalBill / 23000).toFixed(2)),
+        currency: 'VND',
+        onApprove: (details) => {
+          this.paidBill();
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            text: 'Cảm ơn quý khách !',
+            timer: 2000,
+            title: 'Đã thanh toán thành công',
+            showConfirmButton: false,
+          }).then(r => window.location.reload());
+        }
+      }
+    );
+  }
+
   getAllCart() {
-    this.homeService.getCartList().subscribe(value => {
+    this.homeService.getCartList(this.username).subscribe(value => {
       console.log(value);
       this.cart = value;
     });
   }
 
   getTotalBill() {
-    this.homeService.getTotalBill().subscribe(value => {
+    this.homeService.getTotalBill(this.username).subscribe(value => {
       console.log(value);
       this.totalBill = value.totalBill;
     });
   }
 
-  updateQty(cart: ICartDto) {
-    console.log(cart);
-    this.homeService.updateQty(cart).subscribe(value => {
+  updateQty(cartDto: ICartDto) {
+    this.homeService.updateQty(cartDto, this.username).subscribe(value => {
+      // this.getAllCart();
+      // this.getTotalBill();
       this.ngOnInit();
     });
   }
@@ -72,7 +97,7 @@ export class BeerCartComponent implements OnInit {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 2300,
+            timer: 2000,
             timerProgressBar: true,
             didOpen: (toast) => {
               toast.addEventListener('mouseenter', Swal.stopTimer);

@@ -2,15 +2,16 @@ package com.example.service;
 
 import com.example.dto.ICartDto;
 import com.example.dto.ITotalDto;
+import com.example.model.cart.Cart;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
 public interface ICartService {
-    List<ICartDto> getCartList();
-    ITotalDto getTotalBill();
-    void updateCart(Integer id);
-    void insertToCart(Integer id);
-    void updateQty(Integer id, Integer qty);
+    List<ICartDto> getCartList(Integer customerId);
     void deleteProduct(Integer id);
-    ICartDto findById(Integer id);
+    Cart findCartByUsername(String username);
+    void payment(Integer customerId);
+
+    List<ICartDto> historyShopping(String username);
 }

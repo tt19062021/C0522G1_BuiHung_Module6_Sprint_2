@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import java.util.Date;
+
 public interface ICartDto {
     Integer getId();
     Integer getQuantity();
@@ -7,4 +9,6 @@ public interface ICartDto {
     Double getSumPerOne();
     String getImage();
     String getName();
+    Integer getBeerId();
+    Date getDatePayment();
 }

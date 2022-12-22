@@ -6,4 +6,7 @@ export interface ICartDto {
   image?: string;
   name?: string;
   totalBill?: number;
+  beerId?: number;
+  countProduct?: number;
+  datePayment?: string;
 }

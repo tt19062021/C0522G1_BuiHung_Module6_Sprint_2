@@ -5,6 +5,8 @@ import {HomeService} from '../../../service/home.service';
 import {Title} from '@angular/platform-browser';
 import {Router} from '@angular/router';
 import {ICartDto} from '../../../dto/i-cart-dto';
+import {TokenStorageService} from '../../../service/token-storage.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-page-home',
@@ -26,14 +28,17 @@ export class PageHomeComponent implements OnInit {
   endAlcohol = 0;
   alcohol = '';
   item: ICartDto[];
+username: string;
   constructor(private homeService: HomeService,
               private title: Title,
-              private router: Router) {
+              private router: Router,
+              private tokenService: TokenStorageService) {
     this.title.setTitle('THOR-BEER');
   }
 
   ngOnInit(): void {
     this.paginate();
+    this.getCustomer();
   }
 
   paginate() {
@@ -49,16 +54,15 @@ export class PageHomeComponent implements OnInit {
       }
     });
   }
-
-  getIdBeer(beerId: number) {
-    // console.log(beerId + 'ok');
-    this.router.navigateByUrl('/detail/' + beerId);
+  getCustomer(): void {
+    this.username = this.tokenService.getUser().username;
   }
 
   nextPage() {
     this.pageSize += 4;
     this.paginate();
   }
+
   searchByPrice() {
     console.log(this.price);
     switch (this.price) {
@@ -118,8 +122,26 @@ export class PageHomeComponent implements OnInit {
   //   this.paginateByAlcohol();
   // }
   addToCart(item: IBeerDto) {
-    this.homeService.updateCart(item).subscribe(() => {
-      // this.messageService.add({severity: 'success', summary: 'Success', detail: 'Add successfully'});
-    });
+    if (this.username == null) {
+      Swal.fire({
+        position: 'center',
+        icon: 'warning',
+        title: 'Bạn chưa đăng nhập, vui lòng đăng nhập trước !',
+        showConfirmButton: false,
+        timer: 2000
+      });
+      this.router.navigateByUrl('/login');
+    } else {
+      this.homeService.updateCart(item, this.username).subscribe(() => {
+        console.log(item);
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Thêm vào giỏ hàng thành công',
+          showConfirmButton: false,
+          timer: 1500
+        });
+      });
+    }
   }
 }

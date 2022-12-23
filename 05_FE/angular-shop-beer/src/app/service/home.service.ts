@@ -6,6 +6,8 @@ import {Observable} from 'rxjs';
 import {IBeerDto} from '../dto/i-beer-dto';
 import {IImage} from '../model/i-image';
 import {ICartDto} from '../dto/i-cart-dto';
+import {ICustomer} from '../model/i-customer';
+import {ICustomerDto} from '../dto/i-customer-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -75,7 +77,13 @@ export class HomeService {
   payment(username: string): Observable<void> {
     return this.httpClient.get<void>(this.API_BEER + '/beer/payment/' + username);
   }
+
   history(username: string): Observable<ICartDto[]> {
     return this.httpClient.get<ICartDto[]>(this.API_BEER + '/beer/history/' + username);
+  }
+
+  customerDetail(username: string): Observable<ICustomerDto> {
+    console.log(this.API_BEER + '/beer/customer-detail/' + username);
+    return this.httpClient.get<ICustomerDto>(this.API_BEER + '/beer/customer-detail/' + username);
   }
 }

@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.dto.ICartDto;
 import com.example.dto.IBeerDto;
+import com.example.dto.ICustomerDto;
 import com.example.dto.ITotalDto;
 import com.example.jwt.JwtTokenUtil;
 import com.example.model.beer.Image;
@@ -169,5 +170,13 @@ public class BeerController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(cartDtoList, HttpStatus.OK);
+    }
+    @GetMapping("/customer-detail/{username}")
+    public ResponseEntity<Customer> findCustomerDetail(@PathVariable("username") String username) {
+        Customer Customer = customerService.findCustomerByUsername(username);
+        if (Customer == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(Customer, HttpStatus.OK);
     }
 }

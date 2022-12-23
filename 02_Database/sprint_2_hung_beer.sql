@@ -51,7 +51,6 @@ CREATE TABLE IF NOT EXISTS customer (
     address VARCHAR(200),
     phone_number VARCHAR(15),
     username VARCHAR(30) UNIQUE,
-    customer_type_id INT,
     FOREIGN KEY (username)
         REFERENCES user (username)
 );
@@ -96,10 +95,13 @@ CREATE TABLE IF NOT EXISTS beer (
         REFERENCES brand(id)
 );
 create table if not exists cart(
-id INT PRIMARY KEY AUTO_INCREMENT,
+id int primary key auto_increment,
+day_payment datetime,
 quantity int,
 beer_id int,
 is_delete bit default 0,
+customer_id int,
+foreign key(customer_id) references customer(id),
 foreign key(beer_id) references beer(id)
 );
 CREATE TABLE IF NOT EXISTS image (

@@ -1,5 +1,6 @@
 package com.example.service.impl;
 
+import com.example.dto.ICustomerDto;
 import com.example.model.customer.Customer;
 import com.example.repository.ICustomerRepository;
 import com.example.service.ICustomerService;
@@ -14,5 +15,10 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer findCustomerByUsername(String username) {
         return customerRepository.findCustomerByUserName(username);
+    }
+
+    @Override
+    public ICustomerDto findAllByUsername(String username) {
+        return customerRepository.findAllByUsername(username);
     }
 }

@@ -35,7 +35,7 @@
             <a class="nav-link active" aria-current="page" href="#" style="color: white">LIÊN HỆ</a>
           </li>
           <li class="nav-item ms-1 pt-2">
-            <a class="nav-link active" aria-current="page" routerLink="/history" style="color: white" >LỊCH SỬ
+            <a class="nav-link active" aria-current="page"  style="color: white" >
             </a>
           </li>
           <li class="nav-item ms-1">
@@ -51,7 +51,7 @@
                 <!--        login-->
 
                 <div class="nav-item dropdown mr-1">
-                  <a><span style="color: yellow">{{username}}</span></a>
+                  <a routerLink="/history"><span style="color: yellow">{{username}}</span></a>
                   <a *ngIf="username==''" class="btn btn-danger" style="color: white" data-toggle="dropdown">
                     <i class="fa fa-right-to-bracket"></i> Tài Khoản</a>
                   <div class="dropdown-menu action-form" style="border-radius: 10px">
